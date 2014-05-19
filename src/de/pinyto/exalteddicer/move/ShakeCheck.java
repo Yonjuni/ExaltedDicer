@@ -12,7 +12,7 @@ public class ShakeCheck implements SensorEventListener{
      * The gForce that is necessary to register as shake.
      * Must be greater than 1G 
      */
-    private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;
+    private static final float SHAKE_THRESHOLD_GRAVITY = 1.5F;
     private static final int SHAKE_SLOP_TIME_MS = 500;
     private static final int SHAKE_COUNT_RESET_TIME_MS = 3000;
  
