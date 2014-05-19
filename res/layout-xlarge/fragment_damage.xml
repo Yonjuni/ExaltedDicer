@@ -10,11 +10,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:text="@string/initSuccesses"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#CC0000"
-        android:textSize="60sp" />
+        android:textSize="80sp" />
          
     <NumberPicker
         android:id="@+id/numberPickerDM"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewDM"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="50dp" />
 
     <Button
         android:id="@+id/buttonDM"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/numberPickerDM"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
         android:text="@string/rollButton"
         android:background="#CC0000" 
         android:height="70sp"

@@ -8,9 +8,9 @@
         android:id="@+id/textViewPOOL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/numberPickerPOOL"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/initSuccesses"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#0099CC"
@@ -20,17 +20,17 @@
         android:id="@+id/numberPickerPOOL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewPOOL"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_centerVertical="true"
+         />
 
     <Button
         android:id="@+id/buttonPOOL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/numberPickerPOOL"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/rollButton"
         android:background="#0099CC" 
         android:height="70sp"
