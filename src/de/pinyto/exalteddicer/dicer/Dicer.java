@@ -5,13 +5,14 @@ package de.pinyto.exalteddicer.dicer;
  * @author yonjuni
  * This class is used for dicing pool and damage.
  * If pool is used tens are counted twice. 
- * TODO change targetNumber for Special-Charms
+ * TODO change targetNumber for Special-Charms and Artifacts
+ * 
  */
 
 public class Dicer {
 	
 	
-    public int targetNumber = 7;
+    public int targetNumber = 7; //Default
     public int poolSize;
     
     public void setPoolSize(int poolSize){
@@ -22,7 +23,7 @@ public class Dicer {
         return this.poolSize;
     }
     
-    //For Special-Charms
+    //For Special-Charms and Artifacts
     public void setTargetNumber(int targetNumber){
     	this.targetNumber = targetNumber;
     }
@@ -32,7 +33,6 @@ public class Dicer {
         int[] dice = new int[poolSize];
         for (int i=0; i<dice.length; i++){
             dice[i] = (int)(Math.random() * 10) + 1;
-            System.out.println("Ergebnis: " + dice[i]);
         }
         return dice;
     }
@@ -48,9 +48,10 @@ public class Dicer {
             if (dice[i] >= targetNumber) {
                 success = success + 1;
             }else{
-            if (dice[i] == 1) {
-                ones = ones + 1;
-            }
+            	
+            	if (dice[i] == 1) {
+            		ones = ones + 1;
+            	}
             
             }
         }

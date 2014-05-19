@@ -16,10 +16,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
-	private ActionBar actionBar;
+	private ActionBar actionBar;	
 	
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
@@ -40,11 +40,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 .setTabListener(this));
         
         /**
-         * on swiping the viewpager make respective tab selected
+         * on swiping the viewpager make respective tab selected and highlighted 
          * */
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
          
-            @Override
             public void onPageSelected(int position) {
                 // on changing the page
                 // make respected tab selected
@@ -62,15 +61,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 	}
 
-	@Override
+	
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	@Override
+	
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
@@ -86,7 +83,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onTabReselected(Tab tab, FragmentTransaction ft) {
     }
  
-    @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
         // on tab selected
         // show respected fragment view
