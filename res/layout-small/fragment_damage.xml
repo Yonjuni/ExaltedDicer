@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#424242" >
+
+    <TextView
+        android:id="@+id/textViewDM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/initSuccesses"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#CC0000"
+        android:textSize="40sp" />
+         
+    <NumberPicker
+        android:id="@+id/numberPickerDM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDM"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp" />
+
+    <Button
+        android:id="@+id/buttonDM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberPickerDM"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:text="@string/rollButton"
+        android:background="#CC0000" 
+        android:height="30sp"
+        android:width="150sp"
+        android:textSize="20sp"/>
+
+</RelativeLayout>
