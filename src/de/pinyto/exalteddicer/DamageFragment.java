@@ -72,8 +72,6 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
         }
     });
 	
-	
-	
 	return rootView;
 		
 	}
@@ -81,14 +79,14 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 public void initNumberpicker(){
 		
 	numberPicker = (NumberPicker) rootView.findViewById(R.id.numberPickerDM);
-	String[] numbers = new String[42];
+	String[] numbers = new String[100];
 	
 	for (int i=0; i<numbers.length; i++){
 		numbers[i] = Integer.toString(i+1);
 	}
 	
 	numberPicker.setMinValue(1);
-	numberPicker.setMaxValue(42);
+	numberPicker.setMaxValue(100);
 	numberPicker.setWrapSelectorWheel(true);
 	numberPicker.setDisplayedValues(numbers);
 	numberPicker.setValue(1);
@@ -108,7 +106,6 @@ public void checkBotched(int result){
 	}
 	
 }
-
 
 @Override
 public void onResume() {
