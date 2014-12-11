@@ -2,16 +2,22 @@ package de.pinyto.exalteddicer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 import de.pinyto.exalteddicer.dicing.Dicer;
 import de.pinyto.exalteddicer.move.ShakeListener;
@@ -22,7 +28,7 @@ public class PoolFragment extends Fragment {
     private Activity mActivity;
 
     View rootView;
-    NumberPicker numberPicker;
+    NumberPicker[] numberPickerRow;
     Button rollDiceButton;
     Dicer dicer;
     int success;
@@ -46,8 +52,7 @@ public class PoolFragment extends Fragment {
         rollDiceButton = (Button) rootView.findViewById(R.id.buttonPool);
         rollDiceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int poolSize = numberPicker.getValue();
-                dicer.setPoolSize(poolSize);
+                dicer.setPoolSize(getPoolSize());
                 success = dicer.evaluatePool();
                 checkBotched(success);
             }
@@ -62,12 +67,9 @@ public class PoolFragment extends Fragment {
         mShakeDetector.setOnShakeListener(new OnShakeListener() {
 
             public void onShake(int count) {
-
-                int poolSize = numberPicker.getValue();
-                dicer.setPoolSize(poolSize);
+                dicer.setPoolSize(getPoolSize());
                 success = dicer.evaluatePool();
                 checkBotched(success);
-
             }
         });
 
@@ -82,25 +84,68 @@ public class PoolFragment extends Fragment {
 
     public void initNumberpicker() {
 
-        numberPicker = (NumberPicker) rootView
+        numberPickerRow = new NumberPicker[2];
+        numberPickerRow[0] = (NumberPicker) rootView
+                .findViewById(R.id.numberPickerPoolLeft);
+        numberPickerRow[1] = (NumberPicker) rootView
                 .findViewById(R.id.numberPickerPoolRight);
-        String[] numbers = new String[100];
+
+        String[] numbers = new String[10];
 
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = Integer.toString(i + 1);
+            numbers[i] = Integer.toString(i);
         }
+        for (int i = 0; i < 2; i++) {
+            numberPickerRow[i].setMinValue(0);
+            numberPickerRow[i].setMaxValue(9);
+            numberPickerRow[i].setWrapSelectorWheel(true);
+            numberPickerRow[i].setDisplayedValues(numbers);
+            setNumberPickerTextColor(numberPickerRow[i]);
+        }
+        numberPickerRow[1].setValue(1);
+        numberPickerRow[0].setValue(0);
+    }
 
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(100);
-        numberPicker.setWrapSelectorWheel(true);
-        numberPicker.setDisplayedValues(numbers);
-        numberPicker.setValue(1);
+    public static boolean setNumberPickerTextColor(NumberPicker numberPicker)
+    {
+        final int count = numberPicker.getChildCount();
+        for(int i = 0; i < count; i++){
+            View child = numberPicker.getChildAt(i);
+            if(child instanceof EditText){
+                try{
+                    Field selectorWheelPaintField = numberPicker.getClass()
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(Color.parseColor("#ffffff"));
+                    ((EditText)child).setTextColor(Color.parseColor("#ffffff"));
+                    numberPicker.invalidate();
+                    return true;
+                }
+                catch(NoSuchFieldException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+                catch(IllegalAccessException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+                catch(IllegalArgumentException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+            }
+        }
+        return false;
+    }
+
+    public int getPoolSize() {
+
+        String poolsize = String.valueOf(numberPickerRow[0].getValue())
+                + (numberPickerRow[1].getValue());
+        return Integer.parseInt(poolsize);
     }
 
     public void checkBotched(int result) {
 
         if (result == -1) {
-            resultField.setText("Botched!");
+            resultField.setText("Botched");
         } else {
             resultField.setText(String.valueOf(success));
         }

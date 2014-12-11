@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#424242">
+    android:background="#000000">
 
     <TextView
         android:id="@+id/textViewPool"
@@ -13,14 +13,14 @@
         android:layout_marginTop="40dp"
         android:text="@string/initSuccesses"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#CC0000"
-        android:textSize="80sp" />
+        android:textColor="#0099CC"
+        android:textSize="60sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@id/textViewPool">
 
         <NumberPicker
@@ -41,11 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="101dp"
-        android:background="#CC0000"
+        android:layout_marginBottom="40dp"
         android:height="70sp"
         android:text="@string/rollButton"
         android:textSize="25sp"
-        android:width="200sp" />
+        android:width="250sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_pool"/>
 
 </RelativeLayout>

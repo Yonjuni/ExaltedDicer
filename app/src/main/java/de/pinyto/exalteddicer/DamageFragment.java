@@ -2,16 +2,22 @@ package de.pinyto.exalteddicer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 import de.pinyto.exalteddicer.dicing.Dicer;
 import de.pinyto.exalteddicer.move.ShakeListener;
@@ -89,9 +95,40 @@ public class DamageFragment extends Fragment {
             numberPickerRow[i].setMaxValue(9);
             numberPickerRow[i].setWrapSelectorWheel(true);
             numberPickerRow[i].setDisplayedValues(numbers);
+            setNumberPickerTextColor(numberPickerRow[i]);
         }
         numberPickerRow[1].setValue(1);
         numberPickerRow[0].setValue(0);
+
+    }
+
+    public static boolean setNumberPickerTextColor(NumberPicker numberPicker)
+    {
+        final int count = numberPicker.getChildCount();
+        for(int i = 0; i < count; i++){
+            View child = numberPicker.getChildAt(i);
+            if(child instanceof EditText){
+                try{
+                    Field selectorWheelPaintField = numberPicker.getClass()
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(Color.parseColor("#ffffff"));
+                    ((EditText)child).setTextColor(Color.parseColor("#ffffff"));
+                    numberPicker.invalidate();
+                    return true;
+                }
+                catch(NoSuchFieldException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+                catch(IllegalAccessException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+                catch(IllegalArgumentException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+            }
+        }
+        return false;
     }
 
     public int getPoolSize() {

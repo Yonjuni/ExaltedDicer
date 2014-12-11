@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#424242">
+    android:background="#000000">
 
     <TextView
         android:id="@+id/textViewDM"
@@ -42,10 +42,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:background="#CC0000"
         android:height="70sp"
+        android:textColor="#ffffff"
         android:text="@string/rollButton"
         android:textSize="25sp"
-        android:width="200sp" />
+        android:width="250sp"
+        android:background="@drawable/button_damage"/>
 
 </RelativeLayout>
