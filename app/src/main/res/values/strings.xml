@@ -5,7 +5,7 @@
     <string name="title_section1">Pool</string>
     <string name="title_section2">Damage</string>
     <string name="action_settings">Settings</string>
-    <string name="rollButton">Roll the Dices</string>
+    <string name="rollButton">Roll the Dice</string>
     <string name="initSuccesses">0</string>
 
 </resources>
