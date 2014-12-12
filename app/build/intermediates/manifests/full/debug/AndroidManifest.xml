@@ -8,6 +8,13 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="false"
+        android:normalScreens="true"
+        android:smallScreens="false"
+        android:xlargeScreens="false" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"

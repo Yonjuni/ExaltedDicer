@@ -12,13 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -33,8 +28,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.pager);

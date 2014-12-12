@@ -90,40 +90,56 @@ public class DamageFragment extends Fragment {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = Integer.toString(i);
         }
+        Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+
         for (int i = 0; i < 2; i++) {
             numberPickerRow[i].setMinValue(0);
             numberPickerRow[i].setMaxValue(9);
             numberPickerRow[i].setWrapSelectorWheel(true);
             numberPickerRow[i].setDisplayedValues(numbers);
             setNumberPickerTextColor(numberPickerRow[i]);
-        }
-        numberPickerRow[1].setValue(1);
-        numberPickerRow[0].setValue(0);
 
+            for (Field field : pickerFields) {
+                if (field.getName().equals("mSelectionDivider")) {
+                    field.setAccessible(true);
+                    try {
+                        field.set(numberPickerRow[i], getResources().getDrawable(R.drawable.np_numberpicker_selection_divider));
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                }
+
+
+            }
+            numberPickerRow[1].setValue(1);
+            numberPickerRow[0].setValue(0);
+
+
+        }
     }
 
-    public static boolean setNumberPickerTextColor(NumberPicker numberPicker)
-    {
+    public boolean setNumberPickerTextColor(NumberPicker numberPicker) {
         final int count = numberPicker.getChildCount();
-        for(int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             View child = numberPicker.getChildAt(i);
-            if(child instanceof EditText){
-                try{
+            if (child instanceof EditText) {
+                try {
                     Field selectorWheelPaintField = numberPicker.getClass()
                             .getDeclaredField("mSelectorWheelPaint");
                     selectorWheelPaintField.setAccessible(true);
-                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(Color.parseColor("#ffffff"));
-                    ((EditText)child).setTextColor(Color.parseColor("#ffffff"));
+                    ((Paint) selectorWheelPaintField.get(numberPicker)).setColor(Color.parseColor("#ffffff"));
+                    ((EditText) child).setTextColor(Color.parseColor("#ffffff"));
                     numberPicker.invalidate();
                     return true;
-                }
-                catch(NoSuchFieldException e){
+                } catch (NoSuchFieldException e) {
                     Log.w("setNumberPickerTextColor", e);
-                }
-                catch(IllegalAccessException e){
+                } catch (IllegalAccessException e) {
                     Log.w("setNumberPickerTextColor", e);
-                }
-                catch(IllegalArgumentException e){
+                } catch (IllegalArgumentException e) {
                     Log.w("setNumberPickerTextColor", e);
                 }
             }
@@ -152,6 +168,7 @@ public class DamageFragment extends Fragment {
         }
 
     }
+
 
     @Override
     public void onResume() {
