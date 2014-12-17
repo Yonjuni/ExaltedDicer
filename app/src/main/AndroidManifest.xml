@@ -4,6 +4,8 @@
     android:versionCode="2"
     android:versionName="2.0"  >
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <supports-screens
         android:smallScreens="false"
         android:normalScreens="true"

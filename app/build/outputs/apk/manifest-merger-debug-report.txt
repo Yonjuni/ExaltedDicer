@@ -15,48 +15,52 @@ ADDED from AndroidManifest.xml:2:1
 		ADDED from AndroidManifest.xml:4:5
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
-supports-screens
+uses-permission#android.permission.VIBRATE
 ADDED from AndroidManifest.xml:7:5
+	android:name
+		ADDED from AndroidManifest.xml:7:22
+supports-screens
+ADDED from AndroidManifest.xml:9:5
 	android:largeScreens
-		ADDED from AndroidManifest.xml:10:9
-	android:anyDensity
 		ADDED from AndroidManifest.xml:12:9
+	android:anyDensity
+		ADDED from AndroidManifest.xml:14:9
 	android:normalScreens
-		ADDED from AndroidManifest.xml:9:9
-	android:xlargeScreens
 		ADDED from AndroidManifest.xml:11:9
+	android:xlargeScreens
+		ADDED from AndroidManifest.xml:13:9
 	android:smallScreens
-		ADDED from AndroidManifest.xml:8:9
+		ADDED from AndroidManifest.xml:10:9
 application
-ADDED from AndroidManifest.xml:14:5
+ADDED from AndroidManifest.xml:16:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 	android:label
-		ADDED from AndroidManifest.xml:17:9
+		ADDED from AndroidManifest.xml:19:9
 	android:allowBackup
-		ADDED from AndroidManifest.xml:15:9
+		ADDED from AndroidManifest.xml:17:9
 	android:icon
-		ADDED from AndroidManifest.xml:16:9
-	android:theme
 		ADDED from AndroidManifest.xml:18:9
+	android:theme
+		ADDED from AndroidManifest.xml:20:9
 activity#de.pinyto.exalteddicer.MainActivity
-ADDED from AndroidManifest.xml:19:9
+ADDED from AndroidManifest.xml:21:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:22:13
+		ADDED from AndroidManifest.xml:24:13
 	android:label
-		ADDED from AndroidManifest.xml:21:13
+		ADDED from AndroidManifest.xml:23:13
 	android:name
-		ADDED from AndroidManifest.xml:20:13
+		ADDED from AndroidManifest.xml:22:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:24:13
+ADDED from AndroidManifest.xml:26:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:25:17
-	android:name
-		ADDED from AndroidManifest.xml:25:25
-category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:27:17
 	android:name
-		ADDED from AndroidManifest.xml:27:27
+		ADDED from AndroidManifest.xml:27:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:29:17
+	android:name
+		ADDED from AndroidManifest.xml:29:27
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5

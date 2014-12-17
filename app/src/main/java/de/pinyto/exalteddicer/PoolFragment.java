@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,8 @@ public class PoolFragment extends Fragment {
     int success;
     TextView resultField;
 
+    private Vibrator vib;
+
     // for Shaking
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -49,12 +52,15 @@ public class PoolFragment extends Fragment {
 
         resultField = (TextView) rootView.findViewById(R.id.textViewPool);
 
+        vib = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
+
         rollDiceButton = (Button) rootView.findViewById(R.id.buttonPool);
         rollDiceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dicer.setPoolSize(getPoolSize());
                 success = dicer.evaluatePool();
                 checkBotched(success);
+                vib.vibrate(50);
             }
         });
 
@@ -70,6 +76,7 @@ public class PoolFragment extends Fragment {
                 dicer.setPoolSize(getPoolSize());
                 success = dicer.evaluatePool();
                 checkBotched(success);
+                vib.vibrate(50);
             }
         });
 
