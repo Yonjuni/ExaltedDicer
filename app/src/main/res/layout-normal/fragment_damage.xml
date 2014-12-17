@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:text="@string/initSuccesses"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/darkred"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/textViewDM">
 
         <NumberPicker
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         android:height="70sp"
         android:textColor="@color/white"
         android:text="@string/rollButton"
