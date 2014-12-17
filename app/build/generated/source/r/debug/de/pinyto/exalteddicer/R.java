@@ -1326,12 +1326,12 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f08002e;
         public static final int action_mode_bar_stub=0x7f08002d;
         public static final int action_mode_close_button=0x7f080020;
-        public static final int action_settings=0x7f080048;
+        public static final int action_settings=0x7f08004a;
         public static final int activity_chooser_view_content=0x7f080021;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
         public static final int buttonDM=0x7f080043;
-        public static final int buttonPool=0x7f080047;
+        public static final int buttonPool=0x7f080048;
         public static final int checkbox=0x7f080029;
         public static final int collapseActionView=0x7f080017;
         public static final int decor_content_parent=0x7f08002f;
@@ -1356,9 +1356,11 @@ containing a value of this type.
         public static final int normal=0x7f08000a;
         public static final int numberPickerDMLeft=0x7f080041;
         public static final int numberPickerDMRight=0x7f080042;
-        public static final int numberPickerPoolLeft=0x7f080045;
-        public static final int numberPickerPoolRight=0x7f080046;
+        public static final int numberPickerPoolLeft=0x7f080046;
+        public static final int numberPickerPoolRight=0x7f080047;
         public static final int pager=0x7f08003f;
+        public static final int pickersDM=0x7f080044;
+        public static final int pickersPool=0x7f080049;
         public static final int progress_circular=0x7f080005;
         public static final int progress_horizontal=0x7f080006;
         public static final int radio=0x7f08002b;
@@ -1380,7 +1382,7 @@ containing a value of this type.
         public static final int submit_area=0x7f08003c;
         public static final int tabMode=0x7f08000b;
         public static final int textViewDM=0x7f080040;
-        public static final int textViewPool=0x7f080044;
+        public static final int textViewPool=0x7f080045;
         public static final int title=0x7f080027;
         public static final int up=0x7f080008;
         public static final int useLogo=0x7f080012;

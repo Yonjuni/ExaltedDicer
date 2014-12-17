@@ -358,12 +358,12 @@ int id action_menu_presenter 0x7f080003
 int id action_mode_bar 0x7f08002e
 int id action_mode_bar_stub 0x7f08002d
 int id action_mode_close_button 0x7f080020
-int id action_settings 0x7f080048
+int id action_settings 0x7f08004a
 int id activity_chooser_view_content 0x7f080021
 int id always 0x7f080016
 int id beginning 0x7f080013
 int id buttonDM 0x7f080043
-int id buttonPool 0x7f080047
+int id buttonPool 0x7f080048
 int id checkbox 0x7f080029
 int id collapseActionView 0x7f080017
 int id decor_content_parent 0x7f08002f
@@ -388,9 +388,11 @@ int id none 0x7f08000e
 int id normal 0x7f08000a
 int id numberPickerDMLeft 0x7f080041
 int id numberPickerDMRight 0x7f080042
-int id numberPickerPoolLeft 0x7f080045
-int id numberPickerPoolRight 0x7f080046
+int id numberPickerPoolLeft 0x7f080046
+int id numberPickerPoolRight 0x7f080047
 int id pager 0x7f08003f
+int id pickersDM 0x7f080044
+int id pickersPool 0x7f080049
 int id progress_circular 0x7f080005
 int id progress_horizontal 0x7f080006
 int id radio 0x7f08002b
@@ -412,7 +414,7 @@ int id split_action_bar 0x7f080007
 int id submit_area 0x7f08003c
 int id tabMode 0x7f08000b
 int id textViewDM 0x7f080040
-int id textViewPool 0x7f080044
+int id textViewPool 0x7f080045
 int id title 0x7f080027
 int id up 0x7f080008
 int id useLogo 0x7f080012
