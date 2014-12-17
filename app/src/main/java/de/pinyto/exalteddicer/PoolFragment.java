@@ -108,6 +108,7 @@ public class PoolFragment extends Fragment {
             numberPickerRow[i].setWrapSelectorWheel(true);
             numberPickerRow[i].setDisplayedValues(numbers);
             setNumberPickerTextColor(numberPickerRow[i]);
+            numberPickerRow[i].setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         }
         numberPickerRow[1].setValue(1);
         numberPickerRow[0].setValue(0);

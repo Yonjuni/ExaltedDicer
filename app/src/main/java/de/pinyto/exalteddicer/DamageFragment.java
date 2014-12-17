@@ -105,6 +105,7 @@ public class DamageFragment extends Fragment {
             numberPickerRow[i].setWrapSelectorWheel(true);
             numberPickerRow[i].setDisplayedValues(numbers);
             setNumberPickerTextColor(numberPickerRow[i]);
+            numberPickerRow[i].setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
             for (Field field : pickerFields) {
                 if (field.getName().equals("mSelectionDivider")) {
