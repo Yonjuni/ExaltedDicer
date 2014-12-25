@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        Pinyto {
+            keyAlias 'pinyto-key'
+            keyPassword 'aQqQm6xUxi'
+            storeFile file('exalteddicer.jks')
+            storePassword 'aQqQm6xUxi'
+        }
+    }
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "de.pinyto.exalteddicer"
         minSdkVersion 14
@@ -15,6 +22,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.Pinyto
+        }
+    }
+    productFlavors {
+        ExaltedDicer {
+            signingConfig signingConfigs.Pinyto
+            versionCode 2
+            versionName '2.0'
         }
     }
 }

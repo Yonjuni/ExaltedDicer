@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.pinyto.exalteddicer.test">
+
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="de.pinyto.exalteddicer"
+                     android:handleProfiling="false"
+                     android:functionalTest="false"
+                     android:label="Tests for de.pinyto.exalteddicer"/>
+</manifest>

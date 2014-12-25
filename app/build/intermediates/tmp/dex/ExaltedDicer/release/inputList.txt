@@ -1,0 +1,5 @@
+/home/yonjuni/Projects/Programming/ExaltedDicer/app/build/intermediates/classes/ExaltedDicer/release
+/home/yonjuni/Projects/Programming/ExaltedDicer/app/build/intermediates/pre-dexed/ExaltedDicer/release/support-annotations-21.0.3-54da28287ce0b3c21075c9f6e7ad52d5a7d08924.jar
+/home/yonjuni/Projects/Programming/ExaltedDicer/app/build/intermediates/pre-dexed/ExaltedDicer/release/internal_impl-21.0.3-dd29410dbfc0697198ef5b7f185fb889a663ae92.jar
+/home/yonjuni/Projects/Programming/ExaltedDicer/app/build/intermediates/pre-dexed/ExaltedDicer/release/classes-82738f3a95d78c65705d798cdf55db25f1f18a9b.jar
+/home/yonjuni/Projects/Programming/ExaltedDicer/app/build/intermediates/pre-dexed/ExaltedDicer/release/classes-72735e45a2588156fd9ca2ffcbc5fbb24a9cc16f.jar
