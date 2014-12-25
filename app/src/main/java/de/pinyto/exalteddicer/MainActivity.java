@@ -2,8 +2,11 @@ package de.pinyto.exalteddicer;
 
 import java.util.Locale;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -15,11 +18,11 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +45,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
         });
 
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText("Pool")
-                            .setTabListener(this));
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText("Damage")
-                            .setTabListener(this));
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText(R.string.title_pool)
+                        .setTabListener(this));
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText(R.string.title_damage)
+                        .setTabListener(this));
 
     }
 
@@ -62,17 +65,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        Intent intent = new Intent();
+        intent.setClass(this, SetPreferenceActivity.class);
+        startActivityForResult(intent, 0);
 
-        return super.onOptionsItemSelected(item);
+        return true;
+
     }
 
     @Override
@@ -81,6 +80,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
     }
+
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -100,7 +100,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new PoolFragment();
+                    PoolFragment poolFragment = new PoolFragment();
+                    return poolFragment;
                 case 1:
                     return new DamageFragment();
             }
@@ -116,9 +117,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                    return getString(R.string.title_pool).toUpperCase(l);
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
+                    return getString(R.string.title_damage).toUpperCase(l);
             }
             return null;
         }

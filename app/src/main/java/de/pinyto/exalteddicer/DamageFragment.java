@@ -2,12 +2,14 @@ package de.pinyto.exalteddicer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +36,10 @@ public class DamageFragment extends Fragment {
     Dicer dicer;
     int success;
     TextView resultField;
+    SharedPreferences sharedPreferences;
+
+    private boolean shakingEnabled;
+    private boolean vibrationEnabled;
 
     private Vibrator vib;
 
@@ -45,11 +51,13 @@ public class DamageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        loadPreferences();
+
         rootView = inflater.inflate(R.layout.fragment_damage, container, false);
 
         dicer = new Dicer();
 
-        initNumberpicker();
+        initNumberPicker();
 
         resultField = (TextView) rootView.findViewById(R.id.textViewDM);
 
@@ -61,7 +69,9 @@ public class DamageFragment extends Fragment {
                 dicer.setPoolSize(getPoolSize());
                 success = dicer.evaluateDamage();
                 checkBotched(success);
-                vib.vibrate(50);
+                if (vibrationEnabled) {
+                    vib.vibrate(50);
+                }
             }
         });
 
@@ -75,16 +85,26 @@ public class DamageFragment extends Fragment {
 
             public void onShake(int count) {
 
-                dicer.setPoolSize(getPoolSize());
-                success = dicer.evaluateDamage();
-                checkBotched(success);
-                vib.vibrate(50);
+                if (shakingEnabled) {
+                    dicer.setPoolSize(getPoolSize());
+                    success = dicer.evaluateDamage();
+                    checkBotched(success);
+                    if (vibrationEnabled) {
+                        vib.vibrate(50);
+                    }
+                }
             }
         });
         return rootView;
     }
 
-    public void initNumberpicker() {
+    public void loadPreferences() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity.getBaseContext());
+        shakingEnabled = sharedPreferences.getBoolean("enable_shaking", true);
+        vibrationEnabled = sharedPreferences.getBoolean("enable_vibration", true);
+    }
+
+    public void initNumberPicker() {
 
         numberPickerRow = new NumberPicker[2];
         numberPickerRow[0] = (NumberPicker) rootView
@@ -157,9 +177,9 @@ public class DamageFragment extends Fragment {
 
     public int getPoolSize() {
 
-        String poolsize = String.valueOf(numberPickerRow[0].getValue())
+        String poolSize = String.valueOf(numberPickerRow[0].getValue())
                 + (numberPickerRow[1].getValue());
-        return Integer.parseInt(poolsize);
+        return Integer.parseInt(poolSize);
     }
 
     public void onAttach(Activity activity) {
@@ -181,15 +201,14 @@ public class DamageFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // Add the following line to register the Session Manager Listener
-        // onResume
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,
                 SensorManager.SENSOR_DELAY_UI);
+        shakingEnabled = sharedPreferences.getBoolean("enable_shaking", true);
+        vibrationEnabled = sharedPreferences.getBoolean("enable_vibration", true);
     }
 
     @Override
     public void onPause() {
-        // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
     }

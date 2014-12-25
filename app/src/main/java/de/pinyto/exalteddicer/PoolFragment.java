@@ -2,12 +2,14 @@ package de.pinyto.exalteddicer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +36,10 @@ public class PoolFragment extends Fragment {
     Dicer dicer;
     int success;
     TextView resultField;
+    SharedPreferences sharedPreferences;
+
+    private boolean shakingEnabled;
+    private boolean vibrationEnabled;
 
     private Vibrator vib;
 
@@ -42,17 +48,29 @@ public class PoolFragment extends Fragment {
     private Sensor mAccelerometer;
     private ShakeListener mShakeDetector;
 
+    public void setShakingEnabled(boolean b) {
+        this.shakingEnabled = b;
+    }
+
+    public void setVibrationEnabled(boolean b) {
+        this.vibrationEnabled = b;
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        loadPreferences();
 
         rootView = inflater.inflate(R.layout.fragment_pool, container, false);
 
         dicer = new Dicer();
-        initNumberpicker();
+        initNumberPicker();
 
         resultField = (TextView) rootView.findViewById(R.id.textViewPool);
 
+
         vib = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
+
 
         rollDiceButton = (Button) rootView.findViewById(R.id.buttonPool);
         rollDiceButton.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +78,12 @@ public class PoolFragment extends Fragment {
                 dicer.setPoolSize(getPoolSize());
                 success = dicer.evaluatePool();
                 checkBotched(success);
-                vib.vibrate(50);
+                if (vibrationEnabled) {
+                    vib.vibrate(50);
+                }
             }
         });
+
 
         // ShakeDetector initialization
         mSensorManager = (SensorManager) mActivity
@@ -73,10 +94,15 @@ public class PoolFragment extends Fragment {
         mShakeDetector.setOnShakeListener(new OnShakeListener() {
 
             public void onShake(int count) {
-                dicer.setPoolSize(getPoolSize());
-                success = dicer.evaluatePool();
-                checkBotched(success);
-                vib.vibrate(50);
+
+                if (shakingEnabled) {
+                    dicer.setPoolSize(getPoolSize());
+                    success = dicer.evaluatePool();
+                    checkBotched(success);
+                    if (vibrationEnabled) {
+                        vib.vibrate(50);
+                    }
+                }
             }
         });
 
@@ -84,12 +110,13 @@ public class PoolFragment extends Fragment {
 
     }
 
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = activity;
+    public void loadPreferences() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity.getBaseContext());
+        shakingEnabled = sharedPreferences.getBoolean("enable_shaking", true);
+        vibrationEnabled = sharedPreferences.getBoolean("enable_vibration", true);
     }
 
-    public void initNumberpicker() {
+    public void initNumberPicker() {
 
         numberPickerRow = new NumberPicker[2];
         numberPickerRow[0] = (NumberPicker) rootView
@@ -114,28 +141,24 @@ public class PoolFragment extends Fragment {
         numberPickerRow[0].setValue(0);
     }
 
-    public static boolean setNumberPickerTextColor(NumberPicker numberPicker)
-    {
+    public static boolean setNumberPickerTextColor(NumberPicker numberPicker) {
         final int count = numberPicker.getChildCount();
-        for(int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             View child = numberPicker.getChildAt(i);
-            if(child instanceof EditText){
-                try{
+            if (child instanceof EditText) {
+                try {
                     Field selectorWheelPaintField = numberPicker.getClass()
                             .getDeclaredField("mSelectorWheelPaint");
                     selectorWheelPaintField.setAccessible(true);
-                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(Color.parseColor("#ffffff"));
-                    ((EditText)child).setTextColor(Color.parseColor("#ffffff"));
+                    ((Paint) selectorWheelPaintField.get(numberPicker)).setColor(Color.parseColor("#ffffff"));
+                    ((EditText) child).setTextColor(Color.parseColor("#ffffff"));
                     numberPicker.invalidate();
                     return true;
-                }
-                catch(NoSuchFieldException e){
+                } catch (NoSuchFieldException e) {
                     Log.w("setNumberPickerTextColor", e);
-                }
-                catch(IllegalAccessException e){
+                } catch (IllegalAccessException e) {
                     Log.w("setNumberPickerTextColor", e);
-                }
-                catch(IllegalArgumentException e){
+                } catch (IllegalArgumentException e) {
                     Log.w("setNumberPickerTextColor", e);
                 }
             }
@@ -145,9 +168,9 @@ public class PoolFragment extends Fragment {
 
     public int getPoolSize() {
 
-        String poolsize = String.valueOf(numberPickerRow[0].getValue())
+        String poolSize = String.valueOf(numberPickerRow[0].getValue())
                 + (numberPickerRow[1].getValue());
-        return Integer.parseInt(poolsize);
+        return Integer.parseInt(poolSize);
     }
 
     public void checkBotched(int result) {
@@ -159,18 +182,22 @@ public class PoolFragment extends Fragment {
         }
     }
 
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        // Add the following line to register the Session Manager Listener
-        // onResume
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,
                 SensorManager.SENSOR_DELAY_UI);
+        shakingEnabled = sharedPreferences.getBoolean("enable_shaking", true);
+        vibrationEnabled = sharedPreferences.getBoolean("enable_vibration", true);
     }
 
     @Override
     public void onPause() {
-        // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
     }
