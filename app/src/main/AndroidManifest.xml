@@ -30,7 +30,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SetPreferenceActivity" >
+            android:name=".SetPreferenceActivity"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 
