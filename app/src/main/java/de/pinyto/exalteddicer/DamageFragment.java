@@ -32,16 +32,11 @@ public class DamageFragment extends Fragment {
 
     View rootView;
     NumberPicker[] numberPickerRow;
-    Button rollDiceButton;
-    Dicer dicer;
-    int success;
     TextView resultField;
     SharedPreferences sharedPreferences;
 
     private boolean shakingEnabled;
     private boolean vibrationEnabled;
-
-    private Vibrator vib;
 
     // for Shaking
     private SensorManager mSensorManager;
@@ -55,23 +50,15 @@ public class DamageFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_damage, container, false);
 
-        dicer = new Dicer();
-
         initNumberPicker();
 
         resultField = (TextView) rootView.findViewById(R.id.textViewDM);
 
-        vib = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
-
-        rollDiceButton = (Button) rootView.findViewById(R.id.buttonDM);
+        Button rollDiceButton = (Button) rootView.findViewById(R.id.buttonDM);
         rollDiceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                dicer.setPoolSize(getPoolSize());
-                success = dicer.evaluateDamage();
-                checkBotched(success);
-                if (vibrationEnabled) {
-                    vib.vibrate(50);
-                }
+                Vibrator vibrator = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
+                evaluate(vibrator);
             }
         });
 
@@ -86,12 +73,8 @@ public class DamageFragment extends Fragment {
             public void onShake(int count) {
 
                 if (shakingEnabled) {
-                    dicer.setPoolSize(getPoolSize());
-                    success = dicer.evaluateDamage();
-                    checkBotched(success);
-                    if (vibrationEnabled) {
-                        vib.vibrate(50);
-                    }
+                    Vibrator vibrator = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
+                    evaluate(vibrator);
                 }
             }
         });
@@ -182,12 +165,22 @@ public class DamageFragment extends Fragment {
         return Integer.parseInt(poolSize);
     }
 
+    public void evaluate (Vibrator vibrator) {
+        Dicer dicer = new Dicer();
+        dicer.setPoolSize(getPoolSize());
+        int success = dicer.evaluateDamage();
+        checkBotched(success, success);
+        if (vibrationEnabled) {
+            vibrator.vibrate(50);
+        }
+    }
+
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = activity;
     }
 
-    public void checkBotched(int result) {
+    public void checkBotched(int result, int success) {
 
         if (result == -1) {
             resultField.setText("Botched");
@@ -196,7 +189,6 @@ public class DamageFragment extends Fragment {
         }
 
     }
-
 
     @Override
     public void onResume() {
