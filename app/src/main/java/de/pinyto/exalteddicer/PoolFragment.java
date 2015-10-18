@@ -129,6 +129,9 @@ public class PoolFragment extends Fragment {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = Integer.toString(i);
         }
+
+        Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+
         for (int i = 0; i < 2; i++) {
             numberPickerRow[i].setMinValue(0);
             numberPickerRow[i].setMaxValue(9);
@@ -136,9 +139,29 @@ public class PoolFragment extends Fragment {
             numberPickerRow[i].setDisplayedValues(numbers);
             setNumberPickerTextColor(numberPickerRow[i]);
             numberPickerRow[i].setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+            for (Field field : pickerFields) {
+                if (field.getName().equals("mSelectionDivider")) {
+                    field.setAccessible(true);
+                    try {
+                        field.set(numberPickerRow[i], getResources().getDrawable(R.drawable.dm_numberpicker_selection_divider));
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                }
+
+
+            }
+            numberPickerRow[1].setValue(1);
+            numberPickerRow[0].setValue(0);
+
+
         }
-        numberPickerRow[1].setValue(1);
-        numberPickerRow[0].setValue(0);
+
     }
 
     public static boolean setNumberPickerTextColor(NumberPicker numberPicker) {
@@ -155,11 +178,11 @@ public class PoolFragment extends Fragment {
                     numberPicker.invalidate();
                     return true;
                 } catch (NoSuchFieldException e) {
-                    Log.w("setNumberPickerTextColor", e);
+                    //Log.w("setNumberPickerTextColor", e);
                 } catch (IllegalAccessException e) {
-                    Log.w("setNumberPickerTextColor", e);
+                    //Log.w("setNumberPickerTextColor", e);
                 } catch (IllegalArgumentException e) {
-                    Log.w("setNumberPickerTextColor", e);
+                    //Log.w("setNumberPickerTextColor", e);
                 }
             }
         }
