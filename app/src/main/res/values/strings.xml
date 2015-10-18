@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Exalted Dicer</string>
     <string name="title_pool">Pool</string>
     <string name="title_damage">Damage</string>
@@ -8,11 +7,9 @@
     <string name="rollButton">Roll the Dice</string>
     <string name="initSuccesses">0</string>
     <string name="settings_title">Dicing Settings</string>
-
     <string name="enable_shaking">Roll Dice by Shaking</string>
     <string name="version">Version</string>
-    <string name="version_number">Version 2.0</string>
+    <string name="version_number">Version 2.1</string>
     <string name="about">About</string>
     <string name="vibration_title">Enable Vibration Feedback</string>
-
 </resources>

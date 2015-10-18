@@ -30,8 +30,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         setContentView(R.layout.activity_main);
 
         final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_launcher);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setLogo(R.drawable.ic_launcher);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
