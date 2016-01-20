@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -175,6 +177,17 @@ public class DamageFragment extends Fragment {
         }
     }
 
+    public void flashResult(TextView textView) {
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(500);
+        animation.setStartOffset(20);
+        animation.setRepeatMode(Animation.REVERSE);
+
+        textView.startAnimation(animation);
+
+    }
+
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = activity;
@@ -183,11 +196,11 @@ public class DamageFragment extends Fragment {
     public void checkBotched(int result, int success) {
 
         if (result == -1) {
-            resultField.setText("Botched");
+            resultField.setText("Botch");
         } else {
             resultField.setText(String.valueOf(success));
         }
-
+        flashResult(resultField);
     }
 
     @Override

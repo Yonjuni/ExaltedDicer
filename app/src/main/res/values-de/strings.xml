@@ -7,7 +7,7 @@
     <string name="rollButton">Würfeln</string>
     <string name="initSuccesses">0</string>
     <string name="settings_title">Würfeleinstellungen</string>
-    <string name="enable_shaking">Mit Schütteln würfeln</string>
+    <string name="enable_shaking">Würfeln durch Schütteln</string>
     <string name="version">Version</string>
     <string name="version_number">Version 2.1</string>
     <string name="about">Über Exalted Dicer</string>
