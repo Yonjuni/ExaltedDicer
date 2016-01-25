@@ -196,7 +196,7 @@ public class DamageFragment extends Fragment {
     public void checkBotched(int result, int success) {
 
         if (result == -1) {
-            resultField.setText("Botch");
+            resultField.setText(getString(R.string.botch));
         } else {
             resultField.setText(String.valueOf(success));
         }

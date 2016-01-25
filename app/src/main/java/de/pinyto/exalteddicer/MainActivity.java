@@ -2,6 +2,8 @@ package de.pinyto.exalteddicer;
 
 import java.util.Locale;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -48,6 +50,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
         });
 
+        doFirstRun();
+
         actionBar.addTab(
                 actionBar.newTab()
                         .setText(R.string.title_pool)
@@ -57,6 +61,35 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         .setText(R.string.title_damage)
                         .setTabListener(this));
 
+    }
+
+    private void doFirstRun() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putString("firstShow", "").commit();
+        SharedPreferences settings = this.getSharedPreferences("firstShow", getApplicationContext().MODE_PRIVATE);
+        if (settings.getBoolean("isFirstRun", true)) {
+            tutorialDialog();
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("isFirstRun", false);
+            editor.commit();
+        }
+    }
+
+    public void tutorialDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        alertDialog.setTitle(R.string.tutorial_title);
+
+        alertDialog.setMessage(R.string.tutorial_text);
+
+        alertDialog.setIcon(R.drawable.ic_tutorial);
+
+        alertDialog.setPositiveButton(getString(R.string.tutorial_confirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        alertDialog.show();
     }
 
     @Override
