@@ -29,6 +29,6 @@
 
     <!-- Tutorial Items-->
     <string name="tutorial_title">Welcome to Exalted Dicer 2.2</string>
-    <string name="tutorial_text">The pool size can be set up the number pickers. To roll the dice either the smartphone has to shaked or the button has be to be pressed.</string>
+    <string name="tutorial_text">The pool size can be set by the number pickers. To roll the dice either the smartphone has to shaked or the button has be to be pressed.</string>
     <string name="tutorial_confirm">Okay</string>
 </resources>

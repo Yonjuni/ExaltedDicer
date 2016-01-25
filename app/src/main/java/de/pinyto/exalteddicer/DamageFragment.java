@@ -183,7 +183,6 @@ public class DamageFragment extends Fragment {
         animation.setDuration(500);
         animation.setStartOffset(20);
         animation.setRepeatMode(Animation.REVERSE);
-
         textView.startAnimation(animation);
 
     }

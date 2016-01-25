@@ -9,13 +9,8 @@ public class Dicer {
         this.poolSize = poolSize;
     }
 
-    public int getPoolSize() {
-        return this.poolSize;
-    }
-
     // For Special-Charms and Artifacts
     public void setTargetNumber(int targetNumber) {
-
         this.targetNumber = targetNumber;
     }
 
